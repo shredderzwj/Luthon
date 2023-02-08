@@ -7,7 +7,7 @@ Object = {
         -- 派生类。
         class = class or {}
 
-        -- 派生类继承自Object。
+        -- 派生类继承自self（谁:Fork，这个self就是谁），即父类。
         self.__index = self
         setmetatable(class, self)
 
@@ -15,6 +15,7 @@ Object = {
         class.__new__ = class.__new__ or self.__new__
 
         -- 通过派生类初始化实例对象。派生类的时候可以通过重写此方法，为实例对象绑定属性值。
+        -- 在创建实例对象的时候会调用此方法。
         class.__init__ = class.__init__ or function () end
 
         -- 通过派生类获取其父类。
